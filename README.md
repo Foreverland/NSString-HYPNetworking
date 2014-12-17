@@ -10,7 +10,11 @@
 ```objc
 - (NSString *)hyp_remoteString;
 
+// driverIdentifier => driver_identifier
+
 - (NSString *)hyp_localString;
+
+// driver_identifier => driverIdentifier
 ```
 
 ## Installation
