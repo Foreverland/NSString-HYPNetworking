@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 s.name             = "NSString-HYPNetworking"
 s.version          = "0.1"
-s.summary          = "The best way to convert a camel case string to snake case"
+s.summary          = "ObjectiveC-fy, or ruby-fy your NSStrings"
 s.homepage         = "https://github.com/hyperoslo/NSString-HYPNetworking"
 s.license          = 'MIT'
 s.author           = { "Hyper AS" => "teknologi@hyper.no" }
