@@ -58,7 +58,9 @@ It supports `created_at`, `updated_at`.
 **NSString-HYPNetworking** is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-`pod 'NSString-HYPNetworking'`
+```ruby
+pod 'NSString-HYPNetworking'
+```
 
 ## Author
 
