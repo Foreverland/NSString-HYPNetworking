@@ -23,6 +23,8 @@
 
 ### Acronyms
 
+It supports `id`, `pdf`, `url`, `png`, `jpg`.
+
 ```objc
 [@"userID" hyp_remoteString];
 
@@ -36,6 +38,8 @@
 ```
 
 ### Dates
+
+It supports `created_at`, `updated_at`.
 
 ```objc
 [@"createdDate" hyp_remoteString];
