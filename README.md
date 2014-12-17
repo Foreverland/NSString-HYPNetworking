@@ -10,43 +10,43 @@
 ### Basic
 
 ```objc
-- (NSString *)hyp_remoteString;
+[@"driverIdentifier" hyp_remoteString];
 
-// driverIdentifier => driver_identifier
+// => driver_identifier
 ```
 
 ```objc
-- (NSString *)hyp_localString;
+[@"driver_identifier" hyp_localString];
 
-// driver_identifier => driverIdentifier
+// => driverIdentifier
 ```
 
 ### Acronyms
 
 ```objc
-- (NSString *)hyp_remoteString;
+[@"userID" hyp_remoteString];
 
-// userID => user_id
+// => user_id
 ```
 
 ```objc
-- (NSString *)hyp_localString;
+[@"user_id" hyp_localString];
 
-// user_id => userID
+// => userID
 ```
 
 ### Dates
 
 ```objc
-- (NSString *)hyp_remoteString;
+[@"createdDate" hyp_remoteString];
 
-// createdDate => created_at
+// => created_at
 ```
 
 ```objc
-- (NSString *)hyp_localString;
+[@"created_at" hyp_localString];
 
-// created_at => createdDate
+// => createdDate
 ```
 
 ## Installation
