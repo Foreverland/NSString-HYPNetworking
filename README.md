@@ -7,14 +7,46 @@
 
 ## Usage
 
+### Basic
+
 ```objc
 - (NSString *)hyp_remoteString;
 
 // driverIdentifier => driver_identifier
+```
 
+```objc
 - (NSString *)hyp_localString;
 
 // driver_identifier => driverIdentifier
+```
+
+### Acronyms
+
+```objc
+- (NSString *)hyp_remoteString;
+
+// userID => user_id
+```
+
+```objc
+- (NSString *)hyp_localString;
+
+// user_id => userID
+```
+
+### Dates
+
+```objc
+- (NSString *)hyp_remoteString;
+
+// createdDate => created_at
+```
+
+```objc
+- (NSString *)hyp_localString;
+
+// created_at => createdDate
 ```
 
 ## Installation
