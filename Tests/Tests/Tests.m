@@ -76,7 +76,7 @@
 - (void)testLocalString
 {
     NSString *remoteKey = @"age";
-    NSString *localKey = @"age";s
+    NSString *localKey = @"age";
 
     XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 
