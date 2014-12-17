@@ -7,7 +7,11 @@
 
 ## Usage
 
-`<API>`
+```objc
+- (NSString *)hyp_remoteString;
+
+- (NSString *)hyp_localString;
+```
 
 ## Installation
 
