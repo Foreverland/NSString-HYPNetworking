@@ -67,7 +67,7 @@
 
     XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 
-    localKey = @"createdDate";
+    localKey = @"createdAt";
     remoteKey = @"created_at";
 
     XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
@@ -101,7 +101,7 @@
     XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 
     remoteKey = @"updated_at";
-    localKey = @"updatedDate";
+    localKey = @"updatedAt";
 
     XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 }
