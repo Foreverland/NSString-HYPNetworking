@@ -71,6 +71,11 @@
     remoteKey = @"created_at";
 
     XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+
+    localKey = @"userIDFirst";
+    remoteKey = @"user_id_first";
+
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 }
 
 - (void)testLocalString
@@ -104,14 +109,11 @@
     localKey = @"updatedAt";
 
     XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
-}
 
-- (void)testEdgeCase
-{
-    NSString *localKey = @"userIDFirst";
-    NSString *remoteKey = @"user_id_first";
+    remoteKey = @"user_id_first";
+    localKey = @"userIDFirst";
 
-    XCTAssert([remoteKey isEqualToString:[localKey hyp_remoteString]], @"[%@ isEqualToString:%@", remoteKey, [localKey hyp_remoteString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 }
 
 @end
