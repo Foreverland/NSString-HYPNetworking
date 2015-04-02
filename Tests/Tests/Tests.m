@@ -106,4 +106,12 @@
     XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 }
 
+- (void)testEdgeCase
+{
+    NSString *localKey = @"userIDFirst";
+    NSString *remoteKey = @"user_id_first";
+
+    XCTAssert([remoteKey isEqualToString:[localKey hyp_remoteString]], @"[%@ isEqualToString:%@", remoteKey, [localKey hyp_remoteString]);
+}
+
 @end

@@ -62,7 +62,6 @@
     scanner.caseSensitive = YES;
 
     NSCharacterSet *identifierSet = [NSCharacterSet characterSetWithCharactersInString:@"_- "];
-
     NSCharacterSet *alphanumericSet = [NSCharacterSet alphanumericCharacterSet];
     NSCharacterSet *uppercaseSet = [NSCharacterSet uppercaseLetterCharacterSet];
     NSCharacterSet *lowercaseSet = [NSCharacterSet lowercaseLetterCharacterSet];
@@ -76,7 +75,16 @@
 
         if ([replacementString length] > 0) {
             BOOL isUppercaseCharacter = [scanner scanCharactersFromSet:uppercaseSet intoString:&buffer];
+
             if (isUppercaseCharacter) {
+
+                for (NSString *string in [NSString acronyms]) {
+                    if ([[buffer lowercaseString] containsString:string]) {
+                        buffer = [NSString stringWithFormat:@"%@_%@", string, [[buffer lowercaseString] stringByReplacingOccurrencesOfString:string withString:@""]];
+                        break;
+                    }
+                }
+
                 [output appendString:replacementString];
                 [output appendString:[buffer lowercaseString]];
             }
