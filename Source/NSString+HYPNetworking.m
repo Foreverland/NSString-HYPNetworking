@@ -80,7 +80,11 @@
 
                 for (NSString *string in [NSString acronyms]) {
                     if ([[buffer lowercaseString] containsString:string]) {
-                        buffer = [NSString stringWithFormat:@"%@_%@", string, [[buffer lowercaseString] stringByReplacingOccurrencesOfString:string withString:@""]];
+                        if (buffer.length == string.length) {
+                            buffer = string;
+                        } else {
+                            buffer = [NSString stringWithFormat:@"%@_%@", string, [[buffer lowercaseString] stringByReplacingOccurrencesOfString:string withString:@""]];
+                        }
                         break;
                     }
                 }
