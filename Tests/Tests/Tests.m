@@ -71,6 +71,11 @@
     remoteKey = @"created_at";
 
     XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+
+    localKey = @"userIDFirst";
+    remoteKey = @"user_id_first";
+
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 }
 
 - (void)testLocalString
@@ -102,6 +107,11 @@
 
     remoteKey = @"updated_at";
     localKey = @"updatedAt";
+
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
+
+    remoteKey = @"user_id_first";
+    localKey = @"userIDFirst";
 
     XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 }
