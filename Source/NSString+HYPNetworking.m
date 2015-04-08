@@ -79,7 +79,8 @@
             if (isUppercaseCharacter) {
 
                 for (NSString *string in [NSString acronyms]) {
-                    if ([[buffer lowercaseString] containsString:string]) {
+                    BOOL containsString = ([[buffer lowercaseString] rangeOfString:string].location != NSNotFound);
+                    if (containsString) {
                         if (buffer.length == string.length) {
                             buffer = string;
                         } else {
