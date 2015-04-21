@@ -116,7 +116,7 @@
 
 + (NSArray *)acronyms
 {
-    return @[@"id", @"pdf", @"url", @"png", @"jpg"];
+    return @[@"id", @"pdf", @"url", @"png", @"jpg", @"uri", @"json", @"xml"];
 }
 
 @end
