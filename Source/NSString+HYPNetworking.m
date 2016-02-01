@@ -64,7 +64,13 @@
     NSCharacterSet *identifierSet = [NSCharacterSet characterSetWithCharactersInString:@"_- "];
     NSCharacterSet *alphanumericSet = [NSCharacterSet alphanumericCharacterSet];
     NSCharacterSet *uppercaseSet = [NSCharacterSet uppercaseLetterCharacterSet];
-    NSCharacterSet *lowercaseSet = [NSCharacterSet lowercaseLetterCharacterSet];
+
+    NSCharacterSet *lowercaseLettersSet = [NSCharacterSet lowercaseLetterCharacterSet];
+    NSCharacterSet *decimalDigitSet = [NSCharacterSet decimalDigitCharacterSet];
+    NSMutableCharacterSet *mutableLowercaseSet = [[NSMutableCharacterSet alloc] init];
+    [mutableLowercaseSet formUnionWithCharacterSet:lowercaseLettersSet];
+    [mutableLowercaseSet formUnionWithCharacterSet:decimalDigitSet];
+    NSCharacterSet *lowercaseSet = [mutableLowercaseSet copy];
 
     NSString *buffer = nil;
     NSMutableString *output = [NSMutableString string];
@@ -75,9 +81,7 @@
 
         if ([replacementString length] > 0) {
             BOOL isUppercaseCharacter = [scanner scanCharactersFromSet:uppercaseSet intoString:&buffer];
-
             if (isUppercaseCharacter) {
-
                 for (NSString *string in [NSString acronyms]) {
                     BOOL containsString = ([[buffer lowercaseString] rangeOfString:string].location != NSNotFound);
                     if (containsString) {
@@ -89,7 +93,6 @@
                         break;
                     }
                 }
-
                 [output appendString:replacementString];
                 [output appendString:[buffer lowercaseString]];
             }
@@ -98,7 +101,6 @@
             if (isLowercaseCharacter) {
                 [output appendString:[buffer lowercaseString]];
             }
-
         } else if ([scanner scanCharactersFromSet:alphanumericSet intoString:&buffer]) {
             if ([[NSString acronyms] containsObject:buffer]) {
                 [output appendString:[buffer uppercaseString]];

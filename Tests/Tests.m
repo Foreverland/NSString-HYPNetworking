@@ -62,6 +62,11 @@
 
     XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 
+    localKey = @"integer16";
+    remoteKey = @"integer16";
+
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+
     localKey = @"userID";
     remoteKey = @"user_id";
 
@@ -74,6 +79,11 @@
 
     localKey = @"userIDFirst";
     remoteKey = @"user_id_first";
+
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+
+    localKey = @"userID1First16";
+    remoteKey = @"user_id1_first16";
 
     XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 }
@@ -100,6 +110,11 @@
 
     XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 
+    remoteKey = @"integer16";
+    localKey = @"integer16";
+
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_localString]);
+
     remoteKey = @"user_id";
     localKey = @"userID";
 
@@ -112,6 +127,11 @@
 
     remoteKey = @"user_id_first";
     localKey = @"userIDFirst";
+
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
+
+    remoteKey = @"user_id1_first16";
+    localKey = @"userID1First16";
 
     XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 }
