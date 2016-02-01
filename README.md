@@ -36,10 +36,6 @@ It supports `id`, `pdf`, `url`, `png`, `jpg`.
 // => userID
 ```
 
-## Notes
-
-This category doesn't support numeric characters.
-
 ## Installation
 
 **NSString-HYPNetworking** is available through [CocoaPods](http://cocoapods.org). To install
