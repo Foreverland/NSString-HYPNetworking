@@ -62,6 +62,11 @@
 
     XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 
+    localKey = @"integer16";
+    remoteKey = @"integer16";
+
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+
     localKey = @"userID";
     remoteKey = @"user_id";
 
@@ -99,6 +104,11 @@
     localKey = @"driverIdentifier";
 
     XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
+
+    remoteKey = @"integer16";
+    localKey = @"integer16";
+
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_localString]);
 
     remoteKey = @"user_id";
     localKey = @"userID";
