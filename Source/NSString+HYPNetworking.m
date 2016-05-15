@@ -18,7 +18,7 @@
 }
 
 - (NSMutableDictionary *)storage {
-    if (_storage == nil) {
+    if (!_storage) {
         _storage = [NSMutableDictionary new];
     }
 
@@ -40,7 +40,7 @@
 #pragma mark - Private methods
 
 - (nonnull NSString *)hyp_remoteString {
-    NSString *storedResult = [[[HYPNetworkingStringStorage sharedInstance] storage] objectForKey: self];
+    NSString *storedResult = [[[HYPNetworkingStringStorage sharedInstance] storage] objectForKey:self];
     if (storedResult) {
         return storedResult;
     } else {
@@ -53,7 +53,7 @@
 }
 
 - (nonnull NSString *)hyp_localString {
-    NSString *storedResult = [[[HYPNetworkingStringStorage sharedInstance] storage] objectForKey: self];
+    NSString *storedResult = [[[HYPNetworkingStringStorage sharedInstance] storage] objectForKey:self];
     if (storedResult) {
         return storedResult;
     } else {
