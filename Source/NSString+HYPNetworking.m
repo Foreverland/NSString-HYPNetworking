@@ -1,5 +1,32 @@
 #import "NSString+HYPNetworking.h"
 
+@interface HYPNetworkingStringStorage : NSObject
+
+@property (nonatomic) NSMutableDictionary *storage;
+
+@end
+
+@implementation HYPNetworkingStringStorage
+
++ (instancetype)sharedInstance {
+    static dispatch_once_t once;
+    static id sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
+- (NSMutableDictionary *)storage {
+    if (_storage == nil) {
+        _storage = [NSMutableDictionary new];
+    }
+
+    return _storage;
+}
+
+@end
+
 @interface NSString (PrivateInflections)
 
 - (BOOL)hyp_containsWord:(NSString *)word;
@@ -12,26 +39,35 @@
 
 #pragma mark - Private methods
 
-- (nonnull NSString *)hyp_remoteString
-{
-    NSString *processedString = [self hyp_replaceIdentifierWithString:@"_"];
+- (nonnull NSString *)hyp_remoteString {
+    NSString *storedResult = [[[HYPNetworkingStringStorage sharedInstance] storage] objectForKey: self];
+    if (storedResult) {
+        return storedResult;
+    } else {
+        NSString *processedString = [self hyp_replaceIdentifierWithString:@"_"];
+        NSString *result = [processedString hyp_lowerCaseFirstLetter];
+        [[[HYPNetworkingStringStorage sharedInstance] storage] setObject:result forKey:self];
 
-    return [processedString hyp_lowerCaseFirstLetter];
+        return result;
+    }
 }
 
-- (nonnull NSString *)hyp_localString
-{
-    NSString *processedString = self;
+- (nonnull NSString *)hyp_localString {
+    NSString *storedResult = [[[HYPNetworkingStringStorage sharedInstance] storage] objectForKey: self];
+    if (storedResult) {
+        return storedResult;
+    } else {
+        NSString *processedString = self;
+        processedString = [processedString hyp_replaceIdentifierWithString:@""];
+        BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
+        NSString *result = (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString hyp_lowerCaseFirstLetter];
+        [[[HYPNetworkingStringStorage sharedInstance] storage] setObject:result forKey:self];
 
-    processedString = [processedString hyp_replaceIdentifierWithString:@""];
-
-    BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
-
-    return (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString hyp_lowerCaseFirstLetter];
+        return result;
+    }
 }
 
-- (BOOL)hyp_containsWord:(NSString *)word
-{
+- (BOOL)hyp_containsWord:(NSString *)word {
     BOOL found = NO;
 
     NSArray *components = [self componentsSeparatedByString:@"_"];
@@ -46,8 +82,7 @@
     return found;
 }
 
-- (nonnull NSString *)hyp_lowerCaseFirstLetter
-{
+- (nonnull NSString *)hyp_lowerCaseFirstLetter {
     NSMutableString *mutableString = [[NSMutableString alloc] initWithString:self];
     NSString *firstLetter = [[mutableString substringToIndex:1] lowercaseString];
     [mutableString replaceCharactersInRange:NSMakeRange(0,1)
@@ -56,8 +91,7 @@
     return [mutableString copy];
 }
 
-- (nonnull NSString *)hyp_replaceIdentifierWithString:(NSString *)replacementString
-{
+- (nonnull NSString *)hyp_replaceIdentifierWithString:(NSString *)replacementString {
     NSScanner *scanner = [NSScanner scannerWithString:self];
     scanner.caseSensitive = YES;
 
@@ -116,8 +150,7 @@
     return output;
 }
 
-+ (nonnull NSArray *)acronyms
-{
++ (nonnull NSArray *)acronyms {
     return @[@"id", @"pdf", @"url", @"png", @"jpg", @"uri", @"json", @"xml"];
 }
 
