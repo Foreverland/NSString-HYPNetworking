@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "NSString-HYPNetworking"
-s.version          = "1.0.0"
+s.version          = "1.0.1"
 s.summary          = "ObjectiveC-fy, or ruby-fy your NSStrings"
 s.homepage         = "https://github.com/hyperoslo/NSString-HYPNetworking"
 s.license          = 'MIT'
