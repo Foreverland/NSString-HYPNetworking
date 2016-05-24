@@ -2,7 +2,7 @@
 
 @interface HYPNetworkingStringStorage : NSObject
 
-@property (nonatomic) NSMutableDictionary *storage;
+@property (nonatomic, strong) NSMutableDictionary *storage;
 
 @end
 
