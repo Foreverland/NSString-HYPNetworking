@@ -3,6 +3,7 @@
 @interface HYPNetworkingStringStorage : NSObject
 
 @property (nonatomic, strong) NSMutableDictionary *storage;
+@property (nonatomic, strong) NSLock *lock;
 
 @end
 
@@ -10,9 +11,9 @@
 
 + (instancetype)sharedInstance {
     static dispatch_once_t once;
-    static id sharedInstance;
+    static HYPNetworkingStringStorage *sharedInstance;
     dispatch_once(&once, ^{
-        sharedInstance = [[self alloc] init];
+        sharedInstance = [self new];
     });
     return sharedInstance;
 }
@@ -23,6 +24,14 @@
     }
 
     return _storage;
+}
+
+- (NSLock *)lock {
+    if (!_lock) {
+        _lock = [NSLock new];
+    }
+
+    return _lock;
 }
 
 @end
@@ -46,7 +55,10 @@
     } else {
         NSString *processedString = [self hyp_replaceIdentifierWithString:@"_"];
         NSString *result = [processedString hyp_lowerCaseFirstLetter];
+
+        [[[HYPNetworkingStringStorage sharedInstance] lock] lock];
         [[[HYPNetworkingStringStorage sharedInstance] storage] setObject:result forKey:self];
+        [[[HYPNetworkingStringStorage sharedInstance] lock] unlock];
 
         return result;
     }
@@ -61,7 +73,10 @@
         processedString = [processedString hyp_replaceIdentifierWithString:@""];
         BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
         NSString *result = (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString hyp_lowerCaseFirstLetter];
+
+        [[[HYPNetworkingStringStorage sharedInstance] lock] lock];
         [[[HYPNetworkingStringStorage sharedInstance] storage] setObject:result forKey:self];
+        [[[HYPNetworkingStringStorage sharedInstance] lock] unlock];
 
         return result;
     }
