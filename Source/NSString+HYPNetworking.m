@@ -49,7 +49,9 @@
 #pragma mark - Private methods
 
 - (nonnull NSString *)hyp_remoteString {
+    [[[HYPNetworkingStringStorage sharedInstance] lock] lock];
     NSString *storedResult = [[[HYPNetworkingStringStorage sharedInstance] storage] objectForKey:self];
+    [[[HYPNetworkingStringStorage sharedInstance] lock] unlock];
     if (storedResult) {
         return storedResult;
     } else {
@@ -65,7 +67,9 @@
 }
 
 - (nonnull NSString *)hyp_localString {
+    [[[HYPNetworkingStringStorage sharedInstance] lock] lock];
     NSString *storedResult = [[[HYPNetworkingStringStorage sharedInstance] storage] objectForKey:self];
+    [[[HYPNetworkingStringStorage sharedInstance] lock] unlock];
     if (storedResult) {
         return storedResult;
     } else {
