@@ -66,7 +66,7 @@
     }
 }
 
-- (nonnull NSString *)hyp_localString {
+- (nullable NSString *)hyp_localString {
     [[[HYPNetworkingStringStorage sharedInstance] lock] lock];
     NSString *storedResult = [[[HYPNetworkingStringStorage sharedInstance] storage] objectForKey:self];
     [[[HYPNetworkingStringStorage sharedInstance] lock] unlock];

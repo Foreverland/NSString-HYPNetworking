@@ -4,6 +4,6 @@
 
 - (nonnull NSString *)hyp_remoteString;
 
-- (nonnull NSString *)hyp_localString;
+- (nullable NSString *)hyp_localString;
 
 @end
