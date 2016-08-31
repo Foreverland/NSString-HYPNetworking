@@ -124,6 +124,10 @@
     localKey = @"userIDFirst";
 
     XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
+
+    remoteKey = @"test_!_key";
+
+    XCTAssertNil([remoteKey hyp_localString]);
 }
 
 @end
