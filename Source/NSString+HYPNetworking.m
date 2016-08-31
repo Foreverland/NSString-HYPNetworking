@@ -59,7 +59,7 @@
         NSString *result = [processedString hyp_lowerCaseFirstLetter];
 
         [[[HYPNetworkingStringStorage sharedInstance] lock] lock];
-        [[[HYPNetworkingStringStorage sharedInstance] storage] setObject:result forKey:self];
+        [[HYPNetworkingStringStorage sharedInstance] storage][self] = result;
         [[[HYPNetworkingStringStorage sharedInstance] lock] unlock];
 
         return result;
@@ -79,7 +79,7 @@
         NSString *result = (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString hyp_lowerCaseFirstLetter];
 
         [[[HYPNetworkingStringStorage sharedInstance] lock] lock];
-        [[[HYPNetworkingStringStorage sharedInstance] storage] setObject:result forKey:self];
+        [[HYPNetworkingStringStorage sharedInstance] storage][self] = result;
         [[[HYPNetworkingStringStorage sharedInstance] lock] unlock];
 
         return result;
@@ -110,7 +110,7 @@
     return [mutableString copy];
 }
 
-- (nonnull NSString *)hyp_replaceIdentifierWithString:(NSString *)replacementString {
+- (nullable NSString *)hyp_replaceIdentifierWithString:(NSString *)replacementString {
     NSScanner *scanner = [NSScanner scannerWithString:self];
     scanner.caseSensitive = YES;
 
