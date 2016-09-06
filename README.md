@@ -22,7 +22,7 @@
 
 ### Acronyms
 
-It supports id, pdf, url, png, jpg, uri, json, xml.
+It supports `id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`.
 
 
 ```objc
