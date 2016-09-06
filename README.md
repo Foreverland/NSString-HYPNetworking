@@ -22,7 +22,8 @@
 
 ### Acronyms
 
-It supports `id`, `pdf`, `url`, `png`, `jpg`.
+It supports id, pdf, url, png, jpg, uri, json, xml.
+
 
 ```objc
 [@"userID" hyp_remoteString];
