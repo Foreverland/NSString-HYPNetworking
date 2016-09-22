@@ -130,4 +130,17 @@
     XCTAssertNil([remoteKey hyp_localString]);
 }
 
+-(void)testConcurrentAccess {
+
+	dispatch_queue_t concurrentQueue = dispatch_queue_create("com.hyper.test", DISPATCH_QUEUE_CONCURRENT);
+
+	dispatch_apply(65536, concurrentQueue, ^(const size_t i){
+
+		[self testLocalString];
+		[self testRemoteString];
+
+	});
+
+}
+
 @end
