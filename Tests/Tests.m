@@ -18,8 +18,7 @@
 
 #pragma mark - Inflections
 
-- (void)testReplacementIdentifier
-{
+- (void)testReplacementIdentifier {
     NSString *testString = @"first_name";
 
     XCTAssertEqualObjects([testString hyp_replaceIdentifierWithString:@""], @"FirstName");
@@ -33,15 +32,13 @@
     XCTAssertEqualObjects([testString hyp_replaceIdentifierWithString:@""], @"UserID");
 }
 
-- (void)testLowerCaseFirstLetter
-{
+- (void)testLowerCaseFirstLetter {
     NSString *testString = @"FirstName";
 
     XCTAssertEqualObjects([testString hyp_lowerCaseFirstLetter], @"firstName");
 }
 
-- (void)testRemoteString
-{
+- (void)testRemoteString {
     NSString *localKey = @"age";
     NSString *remoteKey = @"age";
 
@@ -81,10 +78,14 @@
     remoteKey = @"user_id_first";
 
     XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+
+    localKey = @"OrderedUser";
+    remoteKey = @"ordered_user";
+
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 }
 
-- (void)testLocalString
-{
+- (void)testLocalString {
     NSString *remoteKey = @"age";
     NSString *localKey = @"age";
 
@@ -130,15 +131,12 @@
     XCTAssertNil([remoteKey hyp_localString]);
 }
 
--(void)testConcurrentAccess {
-
+- (void)testConcurrentAccess {
 	dispatch_queue_t concurrentQueue = dispatch_queue_create("com.hyper.test", DISPATCH_QUEUE_CONCURRENT);
 
-	dispatch_apply(65536, concurrentQueue, ^(const size_t i){
-
+	dispatch_apply(6000, concurrentQueue, ^(const size_t i){
 		[self testLocalString];
 		[self testRemoteString];
-
 	});
 
 }
