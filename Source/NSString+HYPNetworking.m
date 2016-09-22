@@ -20,12 +20,10 @@ typedef void (^HYPNetworkingStringStorageBlock)(void);
     return sharedInstance;
 }
 
--(instancetype)init {
-
-	if (self = [super init]){
-
-		_serialQueue = dispatch_queue_create("com.hyper.HYPNetworking.serialQueue", DISPATCH_QUEUE_SERIAL);
-
+- (instancetype)init {
+    self = [super init];
+	if (self) {
+		_serialQueue = dispatch_queue_create("com.hyper.NSString_HYPNetworking.serialQueue", DISPATCH_QUEUE_SERIAL);
 	}
 
 	return self;
@@ -40,8 +38,7 @@ typedef void (^HYPNetworkingStringStorageBlock)(void);
     return _storage;
 }
 
--(void)performOnDictionary:(HYPNetworkingStringStorageBlock)block {
-
+- (void)performOnDictionary:(HYPNetworkingStringStorageBlock)block {
 	dispatch_sync(_serialQueue, block);
 
 }
@@ -61,14 +58,11 @@ typedef void (^HYPNetworkingStringStorageBlock)(void);
 #pragma mark - Private methods
 
 - (nonnull NSString *)hyp_remoteString {
-
 	HYPNetworkingStringStorage *const stringStorage = [HYPNetworkingStringStorage sharedInstance];
 	__block NSString *storedResult = nil;
 
 	[stringStorage performOnDictionary:^{
-
 		storedResult = [[stringStorage storage] objectForKey:self];
-
 	}];
 
     if (storedResult) {
@@ -78,9 +72,7 @@ typedef void (^HYPNetworkingStringStorageBlock)(void);
         NSString *result = [processedString hyp_lowerCaseFirstLetter];
 
 		[stringStorage performOnDictionary:^{
-
 			[stringStorage storage][self] = result;
-
 		}];
 
         return result;
@@ -88,14 +80,11 @@ typedef void (^HYPNetworkingStringStorageBlock)(void);
 }
 
 - (nullable NSString *)hyp_localString {
-
 	HYPNetworkingStringStorage *const stringStorage = [HYPNetworkingStringStorage sharedInstance];
 	__block NSString *storedResult = nil;
 
 	[stringStorage performOnDictionary:^{
-
 		storedResult = [[stringStorage storage] objectForKey:self];
-
 	}];
 
     if (storedResult) {
@@ -107,9 +96,7 @@ typedef void (^HYPNetworkingStringStorageBlock)(void);
         NSString *result = (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString hyp_lowerCaseFirstLetter];
 
 		[stringStorage performOnDictionary:^{
-
 			[stringStorage storage][self] = result;
-
 		}];
 
         return result;
