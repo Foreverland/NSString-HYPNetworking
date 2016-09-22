@@ -1,9 +1,11 @@
 #import "NSString+HYPNetworking.h"
 
+typedef void (^HYPNetworkingStringStorageBlock)(void);
+
 @interface HYPNetworkingStringStorage : NSObject
 
 @property (nonatomic, strong) NSMutableDictionary *storage;
-@property (nonatomic, strong) NSLock *lock;
+@property (nonatomic, strong) dispatch_queue_t serialQueue;
 
 @end
 
@@ -18,6 +20,18 @@
     return sharedInstance;
 }
 
+-(instancetype)init {
+
+	if (self = [super init]){
+
+		_serialQueue = dispatch_queue_create("com.hyper.HYPNetworking.serialQueue", DISPATCH_QUEUE_SERIAL);
+
+	}
+
+	return self;
+
+}
+
 - (NSMutableDictionary *)storage {
     if (!_storage) {
         _storage = [NSMutableDictionary new];
@@ -26,12 +40,10 @@
     return _storage;
 }
 
-- (NSLock *)lock {
-    if (!_lock) {
-        _lock = [NSLock new];
-    }
+-(void)performOnDictionary:(HYPNetworkingStringStorageBlock)block {
 
-    return _lock;
+	dispatch_sync(_serialQueue, block);
+
 }
 
 @end
@@ -49,27 +61,43 @@
 #pragma mark - Private methods
 
 - (nonnull NSString *)hyp_remoteString {
-    [[[HYPNetworkingStringStorage sharedInstance] lock] lock];
-    NSString *storedResult = [[[HYPNetworkingStringStorage sharedInstance] storage] objectForKey:self];
-    [[[HYPNetworkingStringStorage sharedInstance] lock] unlock];
+
+	HYPNetworkingStringStorage *const stringStorage = [HYPNetworkingStringStorage sharedInstance];
+	__block NSString *storedResult = nil;
+
+	[stringStorage performOnDictionary:^{
+
+		storedResult = [[stringStorage storage] objectForKey:self];
+
+	}];
+
     if (storedResult) {
         return storedResult;
     } else {
         NSString *processedString = [self hyp_replaceIdentifierWithString:@"_"];
         NSString *result = [processedString hyp_lowerCaseFirstLetter];
 
-        [[[HYPNetworkingStringStorage sharedInstance] lock] lock];
-        [[HYPNetworkingStringStorage sharedInstance] storage][self] = result;
-        [[[HYPNetworkingStringStorage sharedInstance] lock] unlock];
+		[stringStorage performOnDictionary:^{
+
+			[stringStorage storage][self] = result;
+
+		}];
 
         return result;
     }
 }
 
 - (nullable NSString *)hyp_localString {
-    [[[HYPNetworkingStringStorage sharedInstance] lock] lock];
-    NSString *storedResult = [[[HYPNetworkingStringStorage sharedInstance] storage] objectForKey:self];
-    [[[HYPNetworkingStringStorage sharedInstance] lock] unlock];
+
+	HYPNetworkingStringStorage *const stringStorage = [HYPNetworkingStringStorage sharedInstance];
+	__block NSString *storedResult = nil;
+
+	[stringStorage performOnDictionary:^{
+
+		storedResult = [[stringStorage storage] objectForKey:self];
+
+	}];
+
     if (storedResult) {
         return storedResult;
     } else {
@@ -78,9 +106,11 @@
         BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
         NSString *result = (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString hyp_lowerCaseFirstLetter];
 
-        [[[HYPNetworkingStringStorage sharedInstance] lock] lock];
-        [[HYPNetworkingStringStorage sharedInstance] storage][self] = result;
-        [[[HYPNetworkingStringStorage sharedInstance] lock] unlock];
+		[stringStorage performOnDictionary:^{
+
+			[stringStorage storage][self] = result;
+
+		}];
 
         return result;
     }
