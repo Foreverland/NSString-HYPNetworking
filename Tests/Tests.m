@@ -81,6 +81,11 @@
     remoteKey = @"user_id_first";
 
     XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+
+    localKey = @"OrderedUser";
+    remoteKey = @"ordered_user";
+
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 }
 
 - (void)testLocalString
@@ -130,15 +135,13 @@
     XCTAssertNil([remoteKey hyp_localString]);
 }
 
--(void)testConcurrentAccess {
-
+- (void)testConcurrentAccess
+{
 	dispatch_queue_t concurrentQueue = dispatch_queue_create("com.hyper.test", DISPATCH_QUEUE_CONCURRENT);
 
-	dispatch_apply(65536, concurrentQueue, ^(const size_t i){
-
+	dispatch_apply(6000, concurrentQueue, ^(const size_t i){
 		[self testLocalString];
 		[self testRemoteString];
-
 	});
 
 }

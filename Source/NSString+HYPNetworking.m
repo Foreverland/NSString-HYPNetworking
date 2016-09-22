@@ -68,8 +68,8 @@ typedef void (^HYPNetworkingStringStorageBlock)(void);
     if (storedResult) {
         return storedResult;
     } else {
-        NSString *processedString = [self hyp_replaceIdentifierWithString:@"_"];
-        NSString *result = [processedString hyp_lowerCaseFirstLetter];
+        NSString *firstLetterLowercase = [self hyp_lowerCaseFirstLetter];
+        NSString *result = [firstLetterLowercase hyp_replaceIdentifierWithString:@"_"];
 
 		[stringStorage performOnDictionary:^{
 			[stringStorage storage][self] = result;
