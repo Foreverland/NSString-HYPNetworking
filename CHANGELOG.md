@@ -1,1 +1,1 @@
-Check https://github.com/hyperoslo/NSString-HYPNetworking/releases for more information.
+Check https://github.com/SyncDB/NSString-HYPNetworking/releases for more information.

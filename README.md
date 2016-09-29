@@ -48,7 +48,7 @@ pod 'NSString-HYPNetworking'
 
 ## Author
 
-Hyper AS, teknologi@hyper.no
+SyncDB, syncdb.contact@gmail.com
 
 ## License
 

@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
 s.name             = "NSString-HYPNetworking"
-s.version          = "1.0.5"
+s.version          = "1.0.6"
 s.summary          = "ObjectiveC-fy, or ruby-fy your NSStrings"
-s.homepage         = "https://github.com/hyperoslo/NSString-HYPNetworking"
+s.homepage         = "https://github.com/SyncDB/NSString-HYPNetworking"
 s.license          = 'MIT'
-s.author           = { "Hyper AS" => "teknologi@hyper.no" }
-s.source           = { :git => "https://github.com/hyperoslo/NSString-HYPNetworking.git", :tag => s.version.to_s }
-s.social_media_url = 'https://twitter.com/hyperoslo'
+s.author           = { "SyncDB" => "syncdb.contact@gmail.com" }
+s.source           = { :git => "https://github.com/SyncDB/NSString-HYPNetworking.git", :tag => s.version.to_s }
+s.social_media_url = 'https://twitter.com/sync_db'
 s.ios.deployment_target = '8.0'
 s.osx.deployment_target = '10.9'
 s.watchos.deployment_target = '2.0'

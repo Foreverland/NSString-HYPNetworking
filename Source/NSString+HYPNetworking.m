@@ -23,7 +23,7 @@ typedef void (^HYPNetworkingStringStorageBlock)(void);
 - (instancetype)init {
     self = [super init];
 	if (self) {
-		_serialQueue = dispatch_queue_create("com.hyper.NSString_HYPNetworking.serialQueue", DISPATCH_QUEUE_SERIAL);
+		_serialQueue = dispatch_queue_create("com.syncdb.NSString_HYPNetworking.serialQueue", DISPATCH_QUEUE_SERIAL);
 	}
 
 	return self;

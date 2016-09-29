@@ -132,7 +132,7 @@
 }
 
 - (void)testConcurrentAccess {
-	dispatch_queue_t concurrentQueue = dispatch_queue_create("com.hyper.test", DISPATCH_QUEUE_CONCURRENT);
+	dispatch_queue_t concurrentQueue = dispatch_queue_create("com.syncdb.test", DISPATCH_QUEUE_CONCURRENT);
 
 	dispatch_apply(6000, concurrentQueue, ^(const size_t i){
 		[self testLocalString];
