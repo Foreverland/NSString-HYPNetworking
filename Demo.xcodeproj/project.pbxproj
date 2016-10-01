@@ -7,21 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1494D5461BDB93ED003C9770 /* NSString+HYPNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1494D5451BDB93ED003C9770 /* NSString+HYPNetworking.m */; };
 		1494D5481BDB93F6003C9770 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1494D5471BDB93F6003C9770 /* Tests.m */; };
+		44A4A1921DA00644006C61F5 /* String+Inflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4A1911DA00644006C61F5 /* String+Inflection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1494D5441BDB93ED003C9770 /* NSString+HYPNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HYPNetworking.h"; sourceTree = "<group>"; };
-		1494D5451BDB93ED003C9770 /* NSString+HYPNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HYPNetworking.m"; sourceTree = "<group>"; };
 		1494D5471BDB93F6003C9770 /* Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		14C0AF7F1BD6D4230009ECBE /* .slather.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .slather.yml; sourceTree = "<group>"; };
 		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		44A4A1911DA00644006C61F5 /* String+Inflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Inflection.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +74,7 @@
 		14C0AF841BD6D4370009ECBE /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				1494D5441BDB93ED003C9770 /* NSString+HYPNetworking.h */,
-				1494D5451BDB93ED003C9770 /* NSString+HYPNetworking.m */,
+				44A4A1911DA00644006C61F5 /* String+Inflection.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -126,6 +124,7 @@
 				TargetAttributes = {
 					146D72AB1AB782920058798C = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -162,8 +161,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44A4A1921DA00644006C61F5 /* String+Inflection.swift in Sources */,
 				1494D5481BDB93F6003C9770 /* Tests.m in Sources */,
-				1494D5461BDB93ED003C9770 /* NSString+HYPNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +266,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -279,6 +279,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

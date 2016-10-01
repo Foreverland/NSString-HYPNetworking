@@ -1,14 +1,6 @@
 @import XCTest;
 
-#import "NSString+HYPNetworking.h"
-
-@interface NSString (PrivateInflections)
-
-- (BOOL)hyp_containsWord:(NSString *)word;
-- (NSString *)hyp_lowerCaseFirstLetter;
-- (NSString *)hyp_replaceIdentifierWithString:(NSString *)replacementString;
-
-@end
+#import "Tests-Swift.h"
 
 @interface Tests : XCTestCase
 
